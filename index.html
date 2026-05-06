@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なんJ翻訳まとめ</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  max-width: 700px;
+  margin: auto;
+  padding: 12px;
+  background: #f5f5f5;
+}
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+.comment {
+  background: white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.name {
+  color: green;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>なんJ翻訳まとめ</h1>
+
+<textarea id="input" rows="5" placeholder="ここに英文を入力"></textarea>
+
+<button onclick="convert()">変換する</button>
+
+<hr>
+
+<div id="output"></div>
+
+<script>
+function randomName() {
+  const names = ["風吹けば名無し", "海外ニキ", "名無し"];
+  return names[Math.floor(Math.random() * names.length)];
+}
+
+function convert() {
+  const text = document.getElementById("input").value;
+
+  const lines = text.split("\n");
+
+  let html = "";
+
+  lines.forEach(line => {
+    if (line.trim() !== "") {
+      html += `
+        <div class="comment">
+          <div class="name">${randomName()}</div>
+          <div>${line}</div>
+        </div>
+      `;
+    }
+  });
+
+  document.getElementById("output").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
